@@ -4,7 +4,29 @@
 
 ### Installing/Building Code
 
+Before applying the clustering models it is important to add the three columbns needed for further analysis of differences between song genres. In the main clustering model documentation file three functions are run to add word complexity, word count, and lyrical sentiment values for each song in the data set.
+
+Next, it was important to normalize the data in order to give equal weights/importance to each variable so that no single variable has a greater impact on model performance because they are bigger numbers. Clustering algorithms use distance measures to determine if an observation should belong to a certain cluster and therefore is important for our modeling. (Normalization is not as important for other models such as decision trees).
+
+2 Clusters Model
+
+Variance with different clusters
+
+Elbow chart
+
+Best number of clusters
+
+4 Cluster model
+
+3 cluster in 3D
+
+Closer look
+
+
 ### Usage of Code
+
+Once adding the 3 columns to the dataset you now should have a complete data set with word complexity, word count, and lyrical sentiment values added. After normalization all variables will take on a value between 0-1, and is impoortant to note that negative lyrical sentiment values are now below 0.5 and positive ones above 0.5.
+
 
 ## DATA
 
@@ -29,4 +51,23 @@ After establishing a hypothesis and research question, we searched for data sets
 
 ## FIGURES
 
+All important figures are locating in the DS 4002 P1 Clustering Figures html file with basic documentation for each graph and their relevance to our analysis. For more detailed takeaways, look at the table of contents below.
+
+### Table of Contents
+| Figure | Description | Takeaway |
+| --- | --- | --- |
+| 2 Cluster Model - w/o Types |  |  |
+| 2 Cluster Model - w/ Types |  |  |
+| Variance with Different Clusters |  |  |
+| Elbow Chart |  |  |
+| Best Number of Choices |  |  |
+| 4 Cluster Model  |  |  |
+| 3 Cluster 3D Graph |  |  |
+| A Closer Look |  |  |
+
+
 ## REFERENCES
+[1]    Kaggle, “Song Lyrics,” datasheet, [Revised Apr. 2022].
+       https://www.kaggle.com/datasets/elizzyliu/song-lyrics
+[2]    A. Clarke, “Sentiment Analysis & Billboard Top 100: The Changing        Mood of Popular Music,” graphext, September 10, 2021. [Online],        Available:https://www.graphext.com/post/sentiment-analysis-            billboard-top-100-the-changing-mood-of-popular-music. [Accessed        Feb. 9, 2023].
+
