@@ -1,0 +1,173 @@
+---
+title: "DS4002_Project1 Exploratory Data Analysis"
+author: "Nathan Patton,Bruce Cao, Camden Miller"
+date: "2023-02-14"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(tidytext)
+```
+
+## Loading in the Data
+```{r}
+songs <- read.csv("all_lyrics-1.csv")
+```
+
+## Data Preperation
+```{r}
+# Converting all characters to uppercase so there are not any repeat words
+songs <- data.frame(lapply(songs, function(v) {
+  if (is.character(v)) return(toupper(v))
+  else return(v)
+  }))
+
+# Removing empty rows
+songs <- na_if(songs, '')
+songs <- na.omit(songs)
+
+# Converting df to tibble
+songs <- tibble(songs)
+```
+
+```{r}
+# Seperating the songs by genre
+rock_songs <- songs[1:1000,4]
+country_songs <- songs[1001:2000,4]
+RB_songs <- songs[2001:3000,4]
+hiprap_songs <- songs[3001:4000,4]
+```
+
+## Determing Word Frequencies in Each Genre
+```{r}
+# Calculating word counts in each genre
+rock_songs <- rock_songs %>%
+  unnest_tokens(word,lyrics) %>%
+  anti_join(stop_words) %>%
+  count(word, sort=TRUE)
+
+country_songs <- country_songs %>%
+  unnest_tokens(word,lyrics) %>%
+  anti_join(stop_words)%>%
+  count(word, sort=TRUE)
+
+RB_songs <- RB_songs %>%
+  unnest_tokens(word,lyrics) %>%
+  anti_join(stop_words) %>%
+  count(word, sort=TRUE)
+
+hiprap_songs <- hiprap_songs %>%
+  unnest_tokens(word,lyrics) %>%
+  anti_join(stop_words)%>%
+  count(word, sort=TRUE)
+
+```
+
+```{r}
+# Using a inner join to match words and add the sentiment variable
+rock_songs_affin <- rock_songs %>%
+  inner_join(get_sentiments("afinn"))
+
+rock_songs_nrc <- rock_songs %>%
+  inner_join(get_sentiments("nrc"))
+
+rock_songs_bing <- rock_songs %>%
+  inner_join(get_sentiments("bing"))
+
+country_songs_affin <- country_songs %>%
+  inner_join(get_sentiments("afinn"))
+
+country_songs_nrc <- country_songs %>%
+  inner_join(get_sentiments("nrc"))
+
+country_songs_bing <- country_songs %>%
+  inner_join(get_sentiments("bing"))
+
+RB_songs_affin <- RB_songs %>%
+  inner_join(get_sentiments("afinn"))
+
+RB_songs_nrc <- RB_songs %>%
+  inner_join(get_sentiments("nrc"))
+
+RB_songs_bing <- RB_songs %>%
+  inner_join(get_sentiments("bing"))
+
+hiprap_songs_affin <- hiprap_songs %>%
+  inner_join(get_sentiments("afinn"))
+
+hiprap_songs_nrc <- hiprap_songs %>%
+  inner_join(get_sentiments("nrc"))
+
+hiprap_songs_bing <- hiprap_songs %>%
+  inner_join(get_sentiments("bing"))
+```
+## Comparing the Sentiment Analysis Between Genres 
+
+### Using Tabling on Each Genre
+```{r}
+table(rock_songs_bing$sentiment)
+table(country_songs_bing$sentiment)
+table(RB_songs_bing$sentiment)
+table(hiprap_songs_bing$sentiment)
+table(rock_songs_nrc$sentiment)
+table(country_songs_nrc$sentiment)
+table(RB_songs_nrc$sentiment)
+table(hiprap_songs_nrc$sentiment)
+```
+
+### Using Histograms on Each Genre
+
+```{r}
+ggplot(data = rock_songs_affin, 
+       aes(x=value)
+        )+
+  geom_histogram()+
+  ggtitle("rock_songs Sentiment Range")+
+  theme_minimal()
+
+ggplot(data = country_songs_affin, 
+       aes(x=value)
+        )+
+  geom_histogram()+
+  ggtitle("country_songs Sentiment Range")+
+  theme_minimal()
+
+ggplot(data = RB_songs_affin, 
+       aes(x=value)
+        )+
+  geom_histogram()+
+  ggtitle("RB_songs Sentiment Range")+
+  theme_minimal()
+
+ggplot(data = hiprap_songs_affin, 
+       aes(x=value)
+        )+
+  geom_histogram()+
+  ggtitle("hiprap_songs Sentiment Range")+
+  theme_minimal()
+```
+
+### Using Word Clouds on Each Genre
+
+```{r, warning=FALSE}
+# Creating Word Clouds for each genre
+ggplot(rock_songs[1:50,], aes(label = word, size = n)
+       ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+
+ggplot(country_songs[1:50,], aes(label = word, size = n)
+       ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+
+ggplot(RB_songs[1:50,], aes(label = word, size = n)
+       ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+
+ggplot(hiprap_songs[1:50,], aes(label = word, size = n)
+       ) +
+  geom_text_wordcloud() +
+  theme_minimal()
+```
