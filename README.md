@@ -27,6 +27,7 @@ Closer look
 
 Once adding the 3 columns to the dataset you now should have a complete data set with word complexity, word count, and lyrical sentiment values added. After normalization all variables will take on a value between 0-1, and is impoortant to note that negative lyrical sentiment values are now below 0.5 and positive ones above 0.5.
 
+Same outline as above ^
 
 ## DATA
 
