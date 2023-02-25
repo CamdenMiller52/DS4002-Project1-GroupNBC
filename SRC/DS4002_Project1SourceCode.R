@@ -213,7 +213,7 @@ w_color_3c <- ggplot(songs, aes(x = sentiment,
                      values = c("1", "2", "3")) +
   theme_light()
 
-# 4 Cluster Model
+# 3 Cluster Model
 # Here we have the graph for 3 clusters using the same variables, and the variance for this model is 0.313, which is  better than the variance of 2-clusters-model.
 w_color_3c
 
