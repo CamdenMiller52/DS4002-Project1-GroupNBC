@@ -62,7 +62,7 @@ All important figures are locating in the DS 4002 P1 Clustering Figures html fil
 | Variance with Different Clusters |  |  |
 | Elbow Chart |  |  |
 | Best Number of Choices |  |  |
-| 4 Cluster Model  |  |  |
+| 3 Cluster Model  |  |  |
 | 3 Cluster 3D Graph |  |  |
 | A Closer Look |  |  |
 
