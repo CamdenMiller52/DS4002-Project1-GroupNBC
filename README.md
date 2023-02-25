@@ -8,26 +8,16 @@ Before applying the clustering models it is important to add the three columbns 
 
 Next, it was important to normalize the data in order to give equal weights/importance to each variable so that no single variable has a greater impact on model performance because they are bigger numbers. Clustering algorithms use distance measures to determine if an observation should belong to a certain cluster and therefore is important for our modeling. (Normalization is not as important for other models such as decision trees).
 
-2 Clusters Model
+After normalizing our data, we can conduct the clustering model. We first did a 2 cluster model just to get a general look of the data, without thinking of the optimal number of clusters. Then we calculated the variance for this 2 cluster model to know the performance of it, and it gave us a 0.226 variance, which is pretty low for us. Then to visualize the clusters, we created two graphs: with color and without to see the cluster layout. Then to improve this model, we used elbow chart to determine the best number of clusters for this dataset, and we decided 3 clusters is the best option. 
 
-Variance with different clusters
-
-Elbow chart
-
-Best number of clusters
-
-4 Cluster model
-
-3 cluster in 3D
-
-Closer look
+We then used the NbClust package to determine the best number of clusters which also shows that 3 is the best number of clusters. So we repeated the previous process with a 3-cluster model, and that gives us a variance of 0.313, which is a major improvement. Then to visualize the clustering of three variables instead of two like we did before, we created a 3-D graph for all the three variables we have. To cut off the outliers of songs with extremely long lyrics, we subset our data with songs of less than 0.2 (after normalization) lyrics length, and used that subset to create the same 3-D model, which gave us promising results, showing the difference of the types of songs and how they cluster.
 
 
 ### Usage of Code
 
 Once adding the 3 columns to the dataset you now should have a complete data set with word complexity, word count, and lyrical sentiment values added. After normalization all variables will take on a value between 0-1, and is impoortant to note that negative lyrical sentiment values are now below 0.5 and positive ones above 0.5.
 
-Same outline as above ^
+To build the clustering model, we used means to set the number of clusters we want in our model and we assigned each song with a cluster by adding a column in the dataset. To visualize the model, we used ggplot and did two graphs, one with color and one without. Then we used different methods to calculate the variance of the model, which tells us the performance of our model. To select the best number of clusters, we used elbow chart and NbClust library and decided that 3 is the optimal number of clusters. Then we used the same methods to calculate the variance and visualized the 3 cluster model by ggplot as well. To visualize all three variables, we used ggplot to build 3-D graphs, and by subsetting our dataset, we were able to have a close look of the clustering model.
 
 ## DATA Folder
 
