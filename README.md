@@ -1,6 +1,6 @@
 # DS4002-Project1-GroupNBC
 
-## SRC
+## SRC Folder
 
 ### Installing/Building Code
 
@@ -50,7 +50,7 @@ After establishing a hypothesis and research question, we searched for data sets
 
 **The code to add the word frequency, sentiment scores, and lyrics length is located in the AddingImportantVariables.R file in the Data folder as well as in the main SRC R documentation. This produces the final data set used to train the model, prior to normalization**
 
-## FIGURES
+## FIGURES Folder
 
 All important figures are locating in the DS 4002 P1 Clustering Figures html file with basic documentation for each graph and their relevance to our analysis. For more detailed takeaways, look at the table of contents below.
 
